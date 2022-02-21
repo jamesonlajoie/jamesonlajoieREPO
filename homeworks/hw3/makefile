@@ -1,0 +1,29 @@
+#This is the makefile for hw3
+CC=gcc
+CFLAGS=-std=c99 -pedantic -Wall -Wextra
+
+png2txt: png2txt.o pnglite.o cs220_paint.o
+	$(CC) png2txt.o pnglite.o cs220_paint.o -o png2txt -lz -lm
+
+png2txt.o: png2txt.c
+	$(CC) $(CFLAGS) -c png2txt.c
+
+pnglite.o: pnglite.c
+	$(CC) $(CFLAGS) -c pnglite.c
+
+cs220_paint.o: cs220_paint.c
+	$(CC) $(CFLAGS) -c cs220_paint.c
+
+txt2png: txt2png.o pnglite.o cs220_paint.o
+	$(CC) txt2png.o pnglite.o cs220_paint.o -o txt2png -lz -lm
+
+CC=gcc
+CFLAGS=-std=c99 -pedantic -Wall -Wextra
+main: mainFile.o functions.o
+$(CC) -o main mainFile.o functions.o
+mainFile.o: mainFile.c functions.h
+$(CC) $(CFLAGS) -c mainFile.c
+functions.o: functions.c functions.h
+$
+clean:
+rm -f *.o 

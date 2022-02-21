@@ -52,11 +52,31 @@ unsigned char *read_image(const char *filename, int *width, int *height) {
 // (initially commented-out: we encourage you to uncomment and
 // implement them)
 
-/*
-int write_image(const char *filename, int width, int height, const unsigned char *buf) {
-  // TODO: implement this function
-}
+
+/*The write_image function (which you are required to implement) should write image file data to the file
+ named by the filename parameter. The width and height parameters indicate the width and height of the image.
+ The buf parameter is an array of color component values (r/g/b triples, arranged row by row.)
+
+If write_image successfully writes the complete image data, it should return 1, otherwise it should return 0.
+
 */
+int write_image(const char *filename, int width, int height, const unsigned char *buf) {
+  //loop for width * height * 3
+  FILE *out = fopen(filename, "wb");
+  if (out == NULL) {
+    return 0;
+  }
+  fprintf(out, " %d %d \n", width, height);
+  int i;
+  
+  size = 3 * height * width;
+  for( i = 0; i < size; i++) {
+    fprintf(out, "%x ", buf[i]);
+  }
+  fclose(out);
+  return 1;
+}
+
 
 /*
 double geom_dist(double x1, double y1, double x2, double y2) {
