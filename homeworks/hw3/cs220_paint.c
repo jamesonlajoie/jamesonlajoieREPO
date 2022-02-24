@@ -78,14 +78,14 @@ int write_image(const char *filename, int width, int height, const unsigned char
 }
 
 
-
+//returns the dist between two coordinates
 double geom_dist(double x1, double y1, double x2, double y2) {
   double dist = sqrt(pow((x2-x1),2.0) + pow((y2-y1),2.0));
 		     return dist;
 }
 
 
-
+// Render_rectangle creates the rectangle including the rgb values in pixel_data
 void render_rectangle(unsigned char *pixel_data, int img_width, int img_height,
                       int rect_x, int rect_y, int rect_w, int rect_h,
                       int r, int g, int b) {
@@ -93,41 +93,107 @@ void render_rectangle(unsigned char *pixel_data, int img_width, int img_height,
   //rect = rectangle(rect_x, rect_y, img_width - rect_x, img_height - rect_y);
     //3 *y * img_width + x * 3 is the starting pixel
 
-    int starting_index = 3 * rect_y + img_width * rect_x * 3;
+    int starting_index = 3 * rect_y * img_width + rect_x * 3;
 
     for (int i = 0; i < rect_w; i++ ) {
       for (int j = 0; j < rect_h; j++) {
-       
-	int cur_col = i * 3 * img_width;
-	int cur_row = j	* 3 * img_height;
-	pixel_data[starting_index + cur_col + cur_row] = r;
-	pixel_data[starting_index + cur_col + cur_row + 1] = g;
-	pixel_data[starting_index + cur_col + cur_row + 2] = b;
 
+	int colandrow = 3 * ((j * img_width) + i);
+	
+	pixel_data[starting_index + colandrow] = r;
+	pixel_data[starting_index + colandrow + 1] = g;
+	pixel_data[starting_index + colandrow + 2] = b;
+
+      }
     }
-  }
   }
 
 void render_ellipse(unsigned char *pixel_data, int img_width, int img_height,
                       double x1, double y1, double x2, double y2, double len,
                       int r, int g, int b) {
-  // TODO: implement this function
+  // distance between focal poiunts
+  float dist = geom_dist(x1, y1, x2, y2);
+
+  // for loop to set color if point is within elipse
+  for (int i = 0; i < img_width; i++ ) {
+      for (int j = 0; j < img_height; j++) {
+	float ellipdist1 = geom_dist(i, j, x1, y1);
+	float ellipdist2 = geom_dist(i, j, x2, y2);
+
+ 
+	//check if part of ellips if so change color
+	if (dist +  ellipdist1 + ellipdist2 <= len) {
+	  pixel_data[(i * img_width + j) * 3] = r;
+	  pixel_data[(i * img_width + j + 1) * 3] = g;
+	  pixel_data[(i * img_width + j + 2) * 3] = b;
+	}
+      }
+  }
+  
 }
 
 
-/*
+
 void flood_fill(unsigned char *pixel_data, int img_width, int img_height,
                 int x, int y, int r, int g, int b) {
-  // TODO: implement this function
-}
-*/
 
-/*
+  // x and y are with width and height
+  if ( x<= img_width && y <= img_height) {
+      orig_r = pixel_data[(x * width + y) * 3];
+      orig_g = pixel_data[(x * width + y + 1) * 3];
+      orig_b = pixel_data[(x * width + y + 2) * 3];
+
+      rec_flood_fill(pixel_data, img_width, img_height, x, y, orig_r, org_g, orig_b, r, g, b, 0);
+  }
+    
+}
 void rec_flood_fill(unsigned char *pixel_data, int img_width, int img_height,
                     int x, int y,
                     int orig_r, int orig_g, int orig_b,
                     int r, int g, int b,
                     int dir) {
-  // TODO: implement this function
+
+  
+  pixel_data[(x * img_width + y) * 3] = r;
+  pixel_data[(x * img_width + y + 1) * 3] = g;
+  pixel_data[(x * img_width + y + 2) * 3] = b;
+  //check all up down left right are same color
+  //checking left pixel
+  if (pixel_data[((x-1) * img_width + y) * 3] == orig_r) {
+    if (pixel_data[((x-1) * img_width + y + 1) * 3] == orig_g) {
+      if (pixel_data[((x-1) * img_width + y + 2) * 3] == orig_b) {
+	rec_flood_fill(pixel_data, img_width, img_height, x - 1, y, orig_r, orig_g, orig_b, dir);
+
+      }
+    }
+  }
+  //checking right pixel
+  if (pixel_data[((x+1) * img_width + y) * 3] == orig_r) {
+    if (pixel_data[((x+1) * img_width + y + 1) * 3] == orig_g) {
+      if (pixel_data[((x+1) * img_width + y + 2) * 3] == orig_b) {
+        rec_flood_fill(pixel_data, img_width, img_height, x + 1, y, orig_r, orig_g, orig_b, dir);
+
+      }
+    }
+  }
+  //checking up pixel
+  if (pixel_data[(x * img_width + (y + 1)) * 3] == orig_r) {
+    if (pixel_data[(x * img_width + (y + 1) + 1) * 3] == orig_g) {
+      if (pixel_data[(x * img_width + (y + 1) + 2) * 3] == orig_b) {
+        rec_flood_fill(pixel_data, img_width, img_height, x1, y + 1, orig_r, orig_g, orig_b, dir);
+
+      }
+    }
+  }
+  //checking down pixel
+  if (pixel_data[(x * img_width + (y - 1)) * 3] == orig_r) {
+    if (pixel_data[(x * img_width + (y - 1) + 1) * 3] == orig_g) {
+      if (pixel_data[(x * img_width + (y - 1) + 2) * 3] == orig_b) {
+        rec_flood_fill(pixel_data, img_width, img_height, x, y - 1, orig_r, orig_g, orig_b, dir);
+
+      }
+    }
+  }
+// TODO: implement this function
 }
-*/
+

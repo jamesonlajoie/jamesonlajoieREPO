@@ -1,0 +1,47 @@
+commit f355420b90dd39f3dfefb48377b414ac70833fe7
+Author: Jameson Lajoie <jlajoie2@jhu.edu>
+Date:   Tue Feb 22 18:55:37 2022 -0500
+
+    Finished and implemented makefile using targets
+
+commit 682fa1e85f438287e7b0c0376e9b8d380580a372
+Author: Jameson Lajoie <jlajoie2@jhu.edu>
+Date:   Mon Feb 21 11:57:27 2022 -0500
+
+    Finished and implemented write_image using a for loop
+
+commit ff6fc4efbb799cdc910ef0c61739fd4393499324
+Author: Jameson Lajoie <jlajoie2@jhu.edu>
+Date:   Mon Feb 21 10:28:10 2022 -0500
+
+    hw3
+
+commit 56ac8d6e001a1df010c342f4a31ff67310df4ee3
+Author: Jameson Lajoie <jlajoie2@jhu.edu>
+Date:   Fri Feb 11 12:44:41 2022 -0500
+
+    Worked on comments for entire code file of arithmetic.c
+
+commit ad2e9285ce8aaa9b8b1b62bae28839198acdcfec
+Author: Jameson Lajoie <jlajoie2@jhu.edu>
+Date:   Fri Feb 11 12:36:04 2022 -0500
+
+    This is my homeworks 1 where I fixed my while loop and checked all the valid inputs, such as when the user enters a bad first character/EOF
+
+commit fd099f08c1fd0bc6876b465a323d8c380e2bd998
+Author: Jameson Lajoie <jlajoie2@jhu.edu>
+Date:   Thu Feb 3 17:38:41 2022 -0500
+
+    finished hw0
+
+commit 86e40b8a3dbb6b2b011978fb87a34c308e46b13b
+Author: jamesonlajoie <98350347+jamesonlajoie@users.noreply.github.com>
+Date:   Mon Jan 31 14:40:50 2022 -0500
+
+    Update README
+
+commit a379cfcd86789802ab294964c1eb9900c211eb31
+Author: Jameson Lajoie <jlajoie2@jhu.edu>
+Date:   Mon Jan 31 14:38:08 2022 -0500
+
+    created README
