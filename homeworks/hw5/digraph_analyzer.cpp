@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <map>
 using std::cout;
 using std::string;
 
@@ -36,10 +37,17 @@ int main(int argc, char * argv[]) {
   for(int j=0;j<length;j++){
     digraphs.push_back(ifile >> nextdg);
   }
+  std::map<std::string, std::vector<std::string>> wordMap;
 
   while(ifile >> word) {
-    for(int i=0;i<length;i++)
-
+    for(int i=0;i<length;i++) {
+      if(word.find(digraphs[i]) != string::npos) {
+        vector<string> t = wordMap[digraphs[i]];
+        t.push_back(word);
+        wordMap[digraphs[i]]=t;
+      }
+    }
+      
   }
 
 
