@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <map>
+#include <algorithm>
 using std::cout;
 using std::string;
 
@@ -31,7 +32,7 @@ int main(int argc, char * argv[]) {
 
   //inserting digraphs into vector
   using std::vector;
-  vector<std::string> digraphs;
+  std::vector<std::string> digraphs;
   
   string nextdg;
   for(int j=0;j<length;j++){
@@ -54,15 +55,15 @@ int main(int argc, char * argv[]) {
   //checking input for which output order the user wants
   if (argv[2] == "r") {
     //reverse ascii order
-    
+    std::sort(digraphs.begin(),digraphs.end());  
   }
   else if (argv[2] == "c") {
     //count of occurences
-    string count=[];
+    std::sort(digraphs.begin(),digraphs.end()); 
   }
   else if (argv[2] == "a") {
     //ascii order
-    string ascii=[];
+    std::sort(digraphs.begin(),digraphs.end()); 
   }
   // TODO: WRITE CODE
   
