@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+#include <utility>
 using std::cout;
 using std::string;
 
@@ -36,7 +37,8 @@ int main(int argc, char * argv[]) {
   
   string nextdg;
   for(int j=0;j<length;j++){
-    digraphs.push_back(ifile >> nextdg);
+    ifile >> nextdg;
+    digraphs.push_back(nextdg);
   }
   std::map<std::string, std::vector<std::string>> wordMap;
 
@@ -51,24 +53,26 @@ int main(int argc, char * argv[]) {
       
   }
 
-
+  using namespace std;
   //checking input for which output order the user wants
   if (argv[2] == "r") {
     //reverse ascii order
-    std::sort(digraphs.begin(),digraphs.end());  
+    std::sort(wordMap.begin(),wordMap.end(),greater<string>());  
   }
   else if (argv[2] == "c") {
-    //count of occurences
-    std::sort(digraphs.begin(),digraphs.end()); 
+    //count of occurences largest to smallest
+    std::sort(wordMap.begin(),wordMap.end(), wordmap_comparitor); 
   }
   else if (argv[2] == "a") {
     //ascii order
-    std::sort(digraphs.begin(),digraphs.end()); 
+    std::sort(wordMap.begin(),wordMap.end()); 
   }
   // TODO: WRITE CODE
   
   
   return 0;
 }
-
-
+pair<string,vector<string>> pair1 pair2;
+int wordmap_comparitor(pair pair1,pair pair2) {
+  return pair1.second.size() > pair2.second.size();
+}
