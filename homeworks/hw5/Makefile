@@ -1,31 +1,13 @@
-CC = gcc
-CFLAGS = -std=c99 -pedantic -Wall -Wextra
-EXES = digraph_analyzer.cpp
-all:EXES
+CONSERVATIVE_FLAGS = -std=c+11 -Wall -Wextra -pedantic
+DEBUGGING_FLAGS = -g -O0
+CFLAGS = $(CONSERVATIVE_FLAGS) $(DEBUGGING_FLAGS)
 
-cs220_paint: cs220_paint.o driver.o
-	$(CC) -o $@ cs220_paint driver.o cs220_paint.o -lm
+digraph_analyzer: digraph_analyzer.o
+	g++ -o digraph_analyzer digraph_analyzer.o
 
-png2txt: pnglite.o cs220_paint.o png2txt.o
-	$(CC) -o $@ png2txt.o pnglite.o cs220_paint.o -lz -lm
+digraph_analyzer.o: digraph_analyzer.cpp
+	g++ -o digraph_analyzer.cpp $(CFLAGS)
 
-txt2png: txt2png.o pnglite.o cs220_paint.o
-	$(CC) -o $@ txt2png.o pnglite.o cs220_paint.o -o txt2png -lz -lm
-
-png2txt.o: png2txt.c pnglite.h cs220_paint.h
-	$(CC) $(CFLAGS) -c png2txt.c 
-
-pnglite.o: pnglite.c pnglite.h
-	$(CC) $(CFLAGS) -c pnglite.c
-
-cs220_paint.o: cs220_paint.c cs220_paint.h
-	$(CC) $(CFLAGS) -c cs220_paint.c
-
-driver.o: driver.c cs220_paint.h
-	$(CC) $(CFLAGS) -c driver.c
-
-txt2png.o: txt2png.c pnglite.h cs220_paint.h
-	$(CC) $(CFLAGS) -c txt2png.c
-
+.PHONY: clean
 clean:
-	rm -f *.o png2txt cs220_paint txt2png
+	rm -f *.o digraph_analyzer.cpp

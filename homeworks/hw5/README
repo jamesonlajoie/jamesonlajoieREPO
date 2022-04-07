@@ -1,0 +1,11 @@
+Throughout this project I used an approach of sorting the digraphs into a vector and then creating 
+a map using the vector to fill in each word containing the digraphs.
+
+I defined the wordmap_comparitor in order to sort the vectors by count.
+The sort functions sorts the vector by ascii order therefore it was needed to add an iterator to
+sort by size of the necessary vector.
+
+I got stuck on a few issues one of which was reversing the ascii order .
+The directions say not to use a namespace which caused some conflicty for me.
+What I should've done was created another method to reverse the order of the vector after sorting.
+
