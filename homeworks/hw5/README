@@ -9,3 +9,6 @@ I got stuck on a few issues one of which was reversing the ascii order .
 The directions say not to use a namespace which caused some conflicty for me.
 What I should've done was created another method to reverse the order of the vector after sorting.
 
+I used an iterator to get the output printed to the screen in order to acces the values inside of the 
+vector map I created
+Couldn't figure out how to use a do while to take in input from user.

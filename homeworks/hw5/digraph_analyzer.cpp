@@ -88,11 +88,21 @@ int main(int argc, char * argv[]) {
   cout<<"q?>"<<endl;
   string input;
   cin>> input;
-  stringstream ss(string);
-  do {
-    if (ss >)
+  std::stringstream ss;
+  /**do {
+    ss >> word;
+    if (isdigit(word)) {
+      //input isw a number
+      cout<<"idk";
+    }
+    else {
+      //input is a digraph
+      cout<<"hello";
+    }
+
   }
   while(input != "exit");
+  **/
   return 0;
 }
  //pair1, pair2;
