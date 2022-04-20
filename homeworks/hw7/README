@@ -1,0 +1,11 @@
+jlajoie2
+
+This is my README file for homework 7
+
+I defined the functions in the order they wqere implemented in the DataLoop.h file.
+
+For the first default constructor i used the list format to initialize the start to nullptr and the count to 0
+
+The rule of 3 states that if a type ever needs to have a user-defined copy constructor, copy assignment operator, or destructor, then it must have all three. Therefore after including the copy constructor I also instituted the copy assignment operator and 
+destructor.
+

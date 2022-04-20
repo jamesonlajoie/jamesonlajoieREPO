@@ -1,5 +1,5 @@
 #include "DataLoop.h"
-#include <iostream>
+#include <iostream> 
 
 
 // Default Constructor
@@ -52,8 +52,10 @@ DataLoop::~DataLoop() {
      this->count= 0;
     
  }
-   bool DataLoop::operator==(const DataLoop & rhs) const{
-       bool res = true;
+// overload of the == operator
+bool DataLoop::operator==(const DataLoop & rhs) const{
+   bool res = true;
+       
 
-   }
+  }
  
