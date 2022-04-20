@@ -16,9 +16,9 @@ DataLoop::DataLoop(const int & num): start(new _Node), count(1) {;
  DataLoop::DataLoop(const DataLoop & rhs) {
      *this=rhs;
  }
-
+//assigning a data loop to another using the = operator
  DataLoop & DataLoop::operator=(const DataLoop & rhs) {
-     if(this->count >0) {
+     if(this->count > 0) {
          delete this->start;
          this->count=0;
          this->start=nullptr;
@@ -41,9 +41,19 @@ DataLoop::DataLoop(const int & num): start(new _Node), count(1) {;
      }
  }
 // destructor
- DataLoop::DataLoop() {
-     delete this->start;
-     this->count=0;
+DataLoop::~DataLoop() {
+     _Node *temp = this->start;
+     for (size_t i = 0;i < this->count;i++){
+         start = start->next;
+         delete temp;
+         temp = start;
+     }
+     this->start=nullptr;
+     this->count= 0;
+    
  }
- }
+   bool DataLoop::operator==(const DataLoop & rhs) const{
+       bool res = true;
 
+   }
+ 
