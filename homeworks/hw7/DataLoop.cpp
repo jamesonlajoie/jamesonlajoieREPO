@@ -54,8 +54,33 @@ DataLoop::~DataLoop() {
  }
 // overload of the == operator
 bool DataLoop::operator==(const DataLoop & rhs) const{
-   bool res = true;
-       
+    bool res = true;
+    
 
-  }
+    return res;
+}
+
+//overload of the += operator
+DataLoop::DataLoop & operator+=(const int & num){
+ 
+}
+
+//overload of the + operator
+DataLoop operator+(const DataLoop & rhs) const{
+
+}
+
+//overload of the ^ operator
+DataLoop & operator^(int offset){
+
+}
+
+//splice function to insert a data loop into the rhs
+DataLoop & splice(DataLoop & rhs, size_t pos){
+
+}
+
+// overloading the << operator to print the dataloop
+friend std::ostream & operator<<(std::ostream & os, const DataLoop & dl) {
+}
  
